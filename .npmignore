@@ -1,0 +1,9 @@
+## npm 忽视
+node_modules/
+rolluo.config.js
+tsconfig.json
+.npmrc
+.travis.yml
+.gitignore
+test/
+src/

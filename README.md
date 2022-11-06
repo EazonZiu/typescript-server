@@ -1,0 +1,1 @@
+# typescript language server uising sequelize-typescript plugin
