@@ -1,6 +1,6 @@
 import express from "express";
 import { PGDB, QueryType, Symbol, FieldType } from "../config/pgPoolConfig";
-import { getTokenRoute } from "../middle/indexRoute";
+import parmsFilter from "../middle/filterRoute";
 // 创建路由
 const indexRoute = express.Router();
 
@@ -23,14 +23,14 @@ indexRoute.get("/test/:id", (req, res) => {
 });
 
 // 局部中间件
-indexRoute.post("/do/:id", getTokenRoute, (req, res) => {
+indexRoute.post("/do/:id", parmsFilter, (req, res) => {
   console.log(req.body);
 
   res.send({ name: "name", age: "man" });
 });
 
 // 局部中间件
-indexRoute.post("/add", getTokenRoute, (req, res) => {
+indexRoute.post("/add", parmsFilter, (req, res) => {
   const params: FieldType = {
     account: "jkkals",
     real_name: "zzzz",
@@ -48,7 +48,7 @@ indexRoute.post("/add", getTokenRoute, (req, res) => {
 });
 
 // 局部中间件
-indexRoute.post("/update", getTokenRoute, (req, res) => {
+indexRoute.post("/update", parmsFilter, (req, res) => {
   const fileds: FieldType = {
     account: "123456",
     sex: "F",
@@ -68,7 +68,7 @@ indexRoute.post("/update", getTokenRoute, (req, res) => {
 });
 
 // 局部中间件
-indexRoute.post("/delete", getTokenRoute, (req, res) => {
+indexRoute.post("/delete", parmsFilter, (req, res) => {
   const queryParams: QueryType[] = [
     {
       key: "user_id",
@@ -83,7 +83,7 @@ indexRoute.post("/delete", getTokenRoute, (req, res) => {
 });
 
 // 局部中间件
-indexRoute.post("/select", getTokenRoute, (req, res) => {
+indexRoute.post("/select", parmsFilter, (req, res) => {
   const queryParams: QueryType[] = [
     {
       key: "user_id",
@@ -98,7 +98,7 @@ indexRoute.post("/select", getTokenRoute, (req, res) => {
 });
 
 // 局部中间件
-indexRoute.post("/query", getTokenRoute, (req, res) => {
+indexRoute.post("/query", parmsFilter, (req, res) => {
   console.log(req.body);
   let a!: QueryType;
 
